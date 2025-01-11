@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Task checker</title>
+{% endblock head %}
+
+{% block body %}
+<h1>Task master</h1>
+
+<div>
+    <table border="1">
+        <tr> <th>ID</th><th>Task</th>
+            <th>Added</th>
+            <th>Action</th>
+        </tr>
+        {% for tasks in tasks %}
+        <tr>
+            <td>{{ tasks.id}}</td>
+            <td>{{ tasks.content}}</td>
+            <td>{{tasks.date_created}}</td>
+            <td>
+                <a href="/delete/{{tasks.id}}">Delete</a><br>
+                <a href="/update/{{tasks.id}}">Update</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <form action="/" method="POST">
+        <input type="text" name="content">
+        <input type="submit" name="Add task">
+    </form>
+</div>
+
+
+{% endblock body %}
